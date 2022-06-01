@@ -1,0 +1,34 @@
+{
+  "name" : "wespals/cryptli",
+  "type" : "library",
+  "description" : "A Symfony CLI utility for Defuse encryption",
+  "keywords": ["encryption", "decryption", "cli", "defuse", "symfony"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Wes Pals",
+      "email": "wespals@gmail.com"
+    }
+  ],
+  "require" : {
+    "php" : ">=7.1",
+    "defuse/php-encryption": "^2.2",
+    "symfony/console": "^4.3"
+  },
+  "require-dev" : {
+    "phpunit/phpunit": "^7.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "Cryptli\\": "src/Cryptli/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Test\\Cryptli\\": "tests/Cryptli/"
+    }
+  },
+  "bin": [
+    "bin/cryptli"
+  ]
+}

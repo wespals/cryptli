@@ -1,0 +1,44 @@
+#!/usr/bin/env php
+<?php
+
+use Cryptli\Command as Cmd;
+use Symfony\Component\Console\Application;
+
+$files = [
+    __DIR__ . '/../../../autoload.php', // composer dependency
+    __DIR__ . '/../vendor/autoload.php', // stand-alone package
+];
+$loader = null;
+
+foreach ($files as $file) {
+    if (file_exists($file)) {
+        $loader = require $file;
+
+        break;
+    }
+}
+
+if (!$loader) {
+    throw new RuntimeException('vendor/autoload.php could not be found. Did you run `php composer.phar install`?');
+}
+
+if (!class_exists(Application::class)) {
+    throw new RuntimeException('You need to add "symfony/console" as a Composer dependency.');
+}
+
+$app = new Application();
+$app->addCommands([
+    new Cmd\ChangePasswordCommand(),
+    new Cmd\CreateKeyCommand(),
+    new Cmd\CreatePasswordProtectedKeyCommand(),
+    new Cmd\DecryptCommand(),
+    new Cmd\DecryptFileCommand(),
+    new Cmd\DecryptFileWithPasswordCommand(),
+    new Cmd\DecryptWithPasswordCommand(),
+    new Cmd\EncryptCommand(),
+    new Cmd\EncryptFileCommand(),
+    new Cmd\EncryptFileWithPasswordCommand(),
+    new Cmd\EncryptWithPasswordCommand(),
+    new Cmd\UnlockKeyCommand()
+]);
+$app->run();

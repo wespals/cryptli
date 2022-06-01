@@ -1,0 +1,22 @@
+<phpunit
+        bootstrap="vendor/autoload.php"
+        colors="true"
+        columns="max"
+        convertErrorsToExceptions="true"
+        convertDeprecationsToExceptions="true"
+>
+    <testsuite name="Cryptli Test Suite">
+        <directory>tests</directory>
+    </testsuite>
+
+    <filter>
+        <whitelist>
+            <directory suffix=".php">src/Cryptli/</directory>
+        </whitelist>
+    </filter>
+
+    <php>
+        <env name="OUTPUT_DIR" value="./tests" force="true" />
+        <env name="PROTECTED_DIR" value="/root" force="true" />
+    </php>
+</phpunit>
